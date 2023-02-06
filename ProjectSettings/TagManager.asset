@@ -8,6 +8,8 @@ TagManager:
   - orange
   - blue
   - Bar
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX

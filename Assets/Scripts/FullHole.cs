@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class DestroyBallZone : MonoBehaviour
+public class FullHole : MonoBehaviour
 {
     ScoreCounter scoreref;
     GameController mainref;
-    // Start is called before the first frame update
+    public int customscore;
+
+
     private void Start()
     {
         scoreref = GameObject.Find("GameController").GetComponent<ScoreCounter>();
         mainref = GameObject.Find("GameController").GetComponent<GameController>();
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,21 +22,8 @@ public class DestroyBallZone : MonoBehaviour
         {
             BallTransform ball = collision.gameObject.GetComponent<BallTransform>();
             ball.destroyBall();
-            scoreref.tallyTotal();
-
-            if (mainref.ballsRemaining == 0)
-            {
-                if (scoreref.orangePegsCount > 0)
-                {
-                    if (mainref.endcalled == false)
-                    {
-                        scoreref.tallyTotal();
-                        mainref.onGameLose();
-                        mainref.endcalled = true;
-                    }
-
-                }
-            }
+            scoreref.addCustomScore(customscore);
+            mainref.showfinalScreen();
 
         }
     }

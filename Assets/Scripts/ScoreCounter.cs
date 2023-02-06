@@ -8,10 +8,10 @@ public class ScoreCounter : MonoBehaviour
 {
     int blueBaseScore = 10;
     int orangeBaseScore = 100;
-    int blueScore;
-    int orangeScore;
+    public int blueScore;
+    public int orangeScore;
 
-    int totalBallsHit;
+    public int totalBallsHit;
     public int finalScore;
     int fevermulti = 1;
 
@@ -23,6 +23,7 @@ public class ScoreCounter : MonoBehaviour
     public Slider fevermeter;
     public TMP_Text score;
 
+    public int scoreperround;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,23 +58,42 @@ public class ScoreCounter : MonoBehaviour
     }
     public void addBlueScore()
     {
+        
         blueScore = blueBaseScore * fevermulti;
         bluePegsCount -= 1;
         totalBallsHit += 1;
+        
     }
     public void addOrangeScore()
     {
+        
         orangeScore = orangeBaseScore * fevermulti;
         orangePegsCount -= 1;
         fevermeter.value += 0.04f;
         totalBallsHit += 1;
+        
     }
 
+    public void addCustomScore(int score)
+    {
+        finalScore += score;
+    }
+
+
+    public void ExtraBall(int ballsleft)
+    {
+        finalScore += 10000 * ballsleft;
+    }
     public void tallyTotal()
     {
-        finalScore += totalBallsHit * (blueScore + orangeScore);
-        totalBallsHit = 0;
+        scoreperround = totalBallsHit * (blueScore + orangeScore);
+        print(totalBallsHit);
+        print(scoreperround);
 
+        finalScore += scoreperround;
+        totalBallsHit = 0;
+        orangeScore = 0;
+        blueScore = 0;
         foreach (Peg orb in GameObject.FindObjectsOfType<Peg>())
         {
             pegList.Add(orb);
