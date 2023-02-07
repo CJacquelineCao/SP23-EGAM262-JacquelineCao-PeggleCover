@@ -59,7 +59,7 @@ public class ScoreCounter : MonoBehaviour
     public void addBlueScore()
     {
         
-        blueScore = blueBaseScore * fevermulti;
+        blueScore += blueBaseScore * fevermulti;
         bluePegsCount -= 1;
         totalBallsHit += 1;
         
@@ -67,7 +67,7 @@ public class ScoreCounter : MonoBehaviour
     public void addOrangeScore()
     {
         
-        orangeScore = orangeBaseScore * fevermulti;
+        orangeScore += orangeBaseScore * fevermulti;
         orangePegsCount -= 1;
         fevermeter.value += 0.04f;
         totalBallsHit += 1;
